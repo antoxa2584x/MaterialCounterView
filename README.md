@@ -2,6 +2,8 @@
 [![](https://jitpack.io/v/BasetEsmaeili/MaterialCounterView.svg)](https://jitpack.io/#BasetEsmaeili/MaterialCounterView)
 
 a Android Library for counting anything
+
+
 ![](images/ezgif.com-resize.gif)
 
 
