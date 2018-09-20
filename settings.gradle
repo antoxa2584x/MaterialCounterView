@@ -1,1 +1,1 @@
-include ':app', ':MCounterView'
+include ':sample', ':MCounterView'
