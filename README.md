@@ -2,8 +2,9 @@
 [![](https://jitpack.io/v/BasetEsmaeili/MaterialCounterView.svg)](https://jitpack.io/#BasetEsmaeili/MaterialCounterView)
 
 a Android Library for counting anything
-<<<<<<< HEAD
 ![](images/ezgif.com-resize.gif)
+
+
 # How to Download
 **Gradle**
 
@@ -24,7 +25,8 @@ dependencies {
 	        implementation 'com.github.BasetEsmaeili:MaterialCounterView:0.1.0'
 	}
 ```
-#How use this library
+# How use this library
+
 **XML**
 ```xml
 <com.baset.mcounterview.MaterialCounterView
