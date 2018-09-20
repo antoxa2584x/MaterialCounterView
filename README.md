@@ -1,5 +1,6 @@
 # MaterialCounterView
 [![](https://jitpack.io/v/BasetEsmaeili/MaterialCounterView.svg)](https://jitpack.io/#BasetEsmaeili/MaterialCounterView)
+
 a Android Library for counting anything
 <<<<<<< HEAD
 ![](images/ezgif.com-resize.gif)
@@ -102,8 +103,5 @@ Unless required by applicable law or agreed to in writing, software distributed 
 **Baset Esmaeili**
 
 email: baset.esmaili0@gmail.com
+
 telegram: https://telegram.me/ikurdish
-=======
-# How to Download
-![](images/doc_2018-09-20_15-41-10.mp4)
->>>>>>> origin/master
