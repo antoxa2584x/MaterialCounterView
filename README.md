@@ -24,7 +24,7 @@ allprojects {
 add below code in build.gradle dependency of app module
 ```gradle
 dependencies {
-	        implementation 'com.github.BasetEsmaeili:MaterialCounterView:0.1.0'
+	        implementation 'com.github.BasetEsmaeili:MaterialCounterView:0.1.1'
 	}
 ```
 # How use this library
@@ -36,25 +36,25 @@ dependencies {
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"/>
 ```
-1- change add Button Icon
+1- change increase Button Icon
 ```xml
-app:addButtonDrawable="@drawable/ic_arrow_forward_black_24dp"
+app:increaseButtonDrawable="@drawable/ic_arrow_forward_black_24dp"
 ```
-2- change remove Button Icon
+2- change decrease Button Icon
 ```xml
-app:removeButtonDrawable="@drawable/ic_arrow_back_black_24dp"
+app:decreaseButtonDrawable="@drawable/ic_arrow_back_black_24dp"
 ```
 3- change Buttons Icon Color
 ```xml
-app:buttonsDrawableColor="@color/colorPrimary"
+app:increase_decreaseDrawableColor="@color/colorPrimary"
 ```
 4- change count value Color
 ```xml
-app:countTextColor="@color/colorAccent"
+app:counterTextColor="@color/colorAccent"
 ```
 5- change background stroke color
 ```xml
-app:roundBtnBackgroundColor="@color/colorPrimaryDark"
+app:borderBtnBackgroundColor="@color/colorPrimary"
 ```
 **Java or Kotlin**
 
@@ -68,8 +68,17 @@ val myCounterView:MaterialCounterView=findViewById(R.id.myCounterView)
 Customization
 
 1-this method return count
+
+
+kotlin
 ```kotlin
 myCounterView.count
+```
+
+
+java
+```java
+myCounterView.getCount
 ```
 2-this method setFont on View
 ```kotlin
@@ -77,24 +86,24 @@ myCounterView.setTypeface(typeface)
 ```
 3- this methods change Buttons Icon
 ```kotlin
-myCounterView.setAddButtonDrawable(ContextCompat.getDrawable(baseContext,R.drawable.ic_arrow_forward_black_24dp))
-myCounterView.setRemoveButtonDrawable(ContextCompat.getDrawable(baseContext,R.drawable.ic_arrow_back_black_24dp))
+counterView.setIncreaseButtonDrawable(ContextCompat.getDrawable(baseContext,R.drawable.ic_arrow_forward_black_24dp))
+counterView.setDecreaseButtonDrawable(ContextCompat.getDrawable(baseContext,R.drawable.ic_arrow_back_black_24dp))
 ```
 4- this method change Buttons Icon Color
 ```kotlin
-myCounterView.setButtonsDrawableColor(ContextCompat.getColor(baseContext,R.color.colorPrimaryDark))
+counterView.setIncreaseDecreaseDrawableColor(ContextCompat.getColor(baseContext,R.color.colorAccent))
 ```
 5- this method change Count Value Color
 ```kotlin
-myCounterView.setCountTextColor(ContextCompat.getColor(baseContext,R.color.colorAccent))
+counterView.setCounterTextColor(ContextCompat.getColor(baseContext,R.color.colorAccent))
 ```
 6- this method set limit for counting
 ```kotlin
-myCounterView.setMaxCount(10)
+counterView.setMaxLimit(8)
 ```
 7- this method change background stroke color
 ```kotlin
-myCounterView.setRoundBtnsBackgroundColor(ContextCompat.getColor(baseContext,android.R.color.white))
+counterView.setBorderBtnsBackgroundColor(ContextCompat.getColor(baseContext,R.color.colorAccent))
 ```
 # Licence
 Copyright 2018 Baset Esmaeili

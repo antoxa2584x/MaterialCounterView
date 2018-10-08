@@ -11,21 +11,22 @@ var typeface:Typeface?=null
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         typeface= Typeface.createFromAsset(assets,"font.ttf")
-        val myCounterView:MaterialCounterView=findViewById(R.id.myCounterView)
+        var counterView: MaterialCounterView = findViewById(R.id.myCounterView)
         //getCount
-        myCounterView.count
+        counterView.count
         //setTypeface
-        myCounterView.setTypeface(typeface)
+        counterView.setTypeface(typeface)
         // change add && remove butn
-        myCounterView.setAddButtonDrawable(ContextCompat.getDrawable(baseContext,R.drawable.ic_arrow_forward_black_24dp))
-        myCounterView.setRemoveButtonDrawable(ContextCompat.getDrawable(baseContext,R.drawable.ic_arrow_back_black_24dp))
+        counterView.setIncreaseButtonDrawable(ContextCompat.getDrawable(baseContext, R.drawable.ic_arrow_forward_black_24dp))
+        counterView.setDecreaseButtonDrawable(ContextCompat.getDrawable(baseContext, R.drawable.ic_arrow_back_black_24dp))
         // change buttons color
-        myCounterView.setButtonsDrawableColor(ContextCompat.getColor(baseContext,R.color.colorPrimaryDark))
+        counterView.setIncreaseDecreaseDrawableColor(ContextCompat.getColor(baseContext, R.color.colorAccent))
         // change count value color
-        myCounterView.setCountTextColor(ContextCompat.getColor(baseContext,R.color.colorAccent))
+        counterView.setCounterTextColor(ContextCompat.getColor(baseContext, R.color.colorAccent))
         // set limit for counting
-        myCounterView.setMaxCount(10)
+        counterView.setMaxLimit(8)
         // change background stroke color
-        myCounterView.setRoundBtnsBackgroundColor(ContextCompat.getColor(baseContext,android.R.color.white))
+        counterView.setBorderBtnsBackgroundColor(ContextCompat.getColor(baseContext, R.color.colorAccent))
+
     }
 }

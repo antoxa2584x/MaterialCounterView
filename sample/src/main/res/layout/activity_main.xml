@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-<com.baset.mcounterview.MaterialCounterView
-    android:id="@+id/myCounterView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:addButtonDrawable="@drawable/ic_arrow_forward_black_24dp"
-    app:removeButtonDrawable="@drawable/ic_arrow_back_black_24dp"
-    app:buttonsDrawableColor="@color/colorPrimary"
-    app:countTextColor="@color/colorAccent"
-    app:roundBtnBackgroundColor="@color/colorPrimaryDark"/>
+
+    <com.baset.mcounterview.MaterialCounterView
+        android:id="@+id/myCounterView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:counterTextColor="@color/colorAccent"
+        app:increase_decreaseDrawableColor="@color/colorPrimary"
+        app:increaseButtonDrawable="@drawable/ic_arrow_forward_black_24dp"
+        app:decreaseButtonDrawable="@drawable/ic_arrow_back_black_24dp"
+        app:borderBtnBackgroundColor="@color/colorPrimary" />
 </android.support.constraint.ConstraintLayout>
