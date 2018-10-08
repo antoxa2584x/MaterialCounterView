@@ -15,15 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MaterialCounterView extends LinearLayout {
-    private ImageView addBtn;
-    private ImageView removeBtn;
+    private ImageView increaseBtn;
+    private ImageView decreaseBtn;
     private TextView tvCount;
-    private long count = 0;
+    private int count = 0;
     private int countTextColor;
-    private int buttonsDrawableColor;
-    private int roundBtnBackgroundColor;
-    private Drawable addButtonDrawable;
-    private Drawable removeButtonDrawable;
+    private int IncreaseDecreaseDrawableColor;
+    private int borderBtnBackgroundColor;
+    private Drawable increaseButtonDrawable;
+    private Drawable decreaseButtonDrawable;
     private LinearLayout lnrRoot;
     private boolean maxCountEnabled=false;
     private int localMaxCount;
@@ -53,28 +53,28 @@ public class MaterialCounterView extends LinearLayout {
     }
 
     private void setupListeners() {
-        addBtn.setOnClickListener(new OnClickListener() {
+        increaseBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (maxCountEnabled){
-                  setMaxCount();
+                    setMaxLimit();
                     count++;
-                    tvCount.setText(Long.toString(count));
+                    tvCount.setText(Integer.toString(count));
                 }else {
                     count++;
-                    tvCount.setText(Long.toString(count));
+                    tvCount.setText(Integer.toString(count));
                 }
             }
         });
-        removeBtn.setOnClickListener(new OnClickListener() {
+        decreaseBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (count <= 0) {
                     count = 0;
-                    tvCount.setText(Long.toString(count));
+                    tvCount.setText(Integer.toString(count));
                 } else {
                     count--;
-                    tvCount.setText(Long.toString(count));
+                    tvCount.setText(Integer.toString(count));
                 }
             }
         });
@@ -85,66 +85,95 @@ public class MaterialCounterView extends LinearLayout {
         lnrRoot=findViewById(R.id.lnrRoot);
         TypedArray typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.MaterialCounterView, 0, 0);
         try {
-            countTextColor = typedArray.getColor(R.styleable.MaterialCounterView_countTextColor, ContextCompat.getColor(context, android.R.color.black));
-            addButtonDrawable = typedArray.getDrawable(R.styleable.MaterialCounterView_addButtonDrawable);
-            removeButtonDrawable = typedArray.getDrawable(R.styleable.MaterialCounterView_removeButtonDrawable);
-            buttonsDrawableColor = typedArray.getColor(R.styleable.MaterialCounterView_buttonsDrawableColor, ContextCompat.getColor(context, android.R.color.darker_gray));
-            roundBtnBackgroundColor = typedArray.getColor(R.styleable.MaterialCounterView_roundBtnBackgroundColor, ContextCompat.getColor(context, android.R.color.darker_gray));
+            countTextColor = typedArray.getColor(R.styleable.MaterialCounterView_counterTextColor, ContextCompat.getColor(context, android.R.color.black));
+            increaseButtonDrawable = typedArray.getDrawable(R.styleable.MaterialCounterView_increaseButtonDrawable);
+            decreaseButtonDrawable = typedArray.getDrawable(R.styleable.MaterialCounterView_decreaseButtonDrawable);
+            IncreaseDecreaseDrawableColor = typedArray.getColor(R.styleable.MaterialCounterView_increase_decreaseDrawableColor, ContextCompat.getColor(context, android.R.color.darker_gray));
+            borderBtnBackgroundColor = typedArray.getColor(R.styleable.MaterialCounterView_borderBtnBackgroundColor, ContextCompat.getColor(context, android.R.color.darker_gray));
 
         } finally {
             typedArray.recycle();
         }
-        removeBtn = findViewById(R.id.img_remove);
+        decreaseBtn = findViewById(R.id.img_remove);
         tvCount = findViewById(R.id.tvCount);
-        addBtn = findViewById(R.id.img_add);
+        increaseBtn = findViewById(R.id.img_add);
         // count_textColor
         tvCount.setTextColor(countTextColor);
         //add&remove btns drawable
-        if (addButtonDrawable == null) {
-            addBtn.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_add_gray_24dp));
+        if (increaseButtonDrawable == null) {
+            increaseBtn.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_add_gray_24dp));
         } else {
-            addBtn.setImageDrawable(addButtonDrawable);
+            increaseBtn.setImageDrawable(increaseButtonDrawable);
         }
-        if (removeButtonDrawable == null) {
-            removeBtn.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_remove_gray_24dp));
+        if (decreaseButtonDrawable == null) {
+            decreaseBtn.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_remove_gray_24dp));
         } else {
-            removeBtn.setImageDrawable(removeButtonDrawable);
+            decreaseBtn.setImageDrawable(decreaseButtonDrawable);
         }
         // btns drawable color
-        addBtn.setColorFilter(buttonsDrawableColor);
-        removeBtn.setColorFilter(buttonsDrawableColor);
+        increaseBtn.setColorFilter(IncreaseDecreaseDrawableColor);
+        decreaseBtn.setColorFilter(IncreaseDecreaseDrawableColor);
         // round btns color
-        GradientDrawable add_drawable = (GradientDrawable)addBtn.getBackground();
-        add_drawable.setStroke(3, roundBtnBackgroundColor);
-        GradientDrawable remove_drawable = (GradientDrawable)removeBtn.getBackground();
-        remove_drawable.setStroke(3, roundBtnBackgroundColor);
+        GradientDrawable add_drawable = (GradientDrawable) increaseBtn.getBackground();
+        add_drawable.setStroke(3, borderBtnBackgroundColor);
+        GradientDrawable remove_drawable = (GradientDrawable) decreaseBtn.getBackground();
+        remove_drawable.setStroke(3, borderBtnBackgroundColor);
         GradientDrawable count_drawable = (GradientDrawable)tvCount.getBackground();
-        count_drawable.setStroke(3, roundBtnBackgroundColor);
+        count_drawable.setStroke(3, borderBtnBackgroundColor);
         setupListeners();
     }
 
+    public void setOnCounterButtonsClick(final OnCounterButtonsClick onCounterButtonsClick) {
+        increaseBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (maxCountEnabled) {
+                    setMaxLimit();
+                    count++;
+                    tvCount.setText(Integer.toString(count));
+                } else {
+                    count++;
+                    tvCount.setText(Integer.toString(count));
+                }
+                onCounterButtonsClick.onIncreaseClick(count);
+            }
+        });
+        decreaseBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (count <= 0) {
+                    count = 0;
+                    tvCount.setText(Integer.toString(count));
+                } else {
+                    count--;
+                    tvCount.setText(Integer.toString(count));
+                }
+                onCounterButtonsClick.onDecreaseClick(count);
+            }
+        });
+    }
 
-    public void setCountTextColor(int color) {
+    public void setCounterTextColor(int color) {
         tvCount.setTextColor(color);
     }
 
-    public void setButtonsDrawableColor(int color) {
-        addBtn.setColorFilter(color);
-        removeBtn.setColorFilter(color);
+    public void setIncreaseDecreaseDrawableColor(int color) {
+        increaseBtn.setColorFilter(color);
+        decreaseBtn.setColorFilter(color);
     }
 
-    public void setAddButtonDrawable(Drawable drawable) {
-        addBtn.setImageDrawable(drawable);
+    public void setIncreaseButtonDrawable(Drawable drawable) {
+        increaseBtn.setImageDrawable(drawable);
     }
 
-    public void setRemoveButtonDrawable(Drawable drawable) {
-        removeBtn.setImageDrawable(drawable);
+    public void setDecreaseButtonDrawable(Drawable drawable) {
+        decreaseBtn.setImageDrawable(drawable);
     }
 
-    public void setRoundBtnsBackgroundColor(int color) {
-        GradientDrawable add_drawable = (GradientDrawable)addBtn.getBackground();
+    public void setBorderBtnsBackgroundColor(int color) {
+        GradientDrawable add_drawable = (GradientDrawable) increaseBtn.getBackground();
         add_drawable.setStroke(3, color);
-        GradientDrawable remove_drawable = (GradientDrawable)removeBtn.getBackground();
+        GradientDrawable remove_drawable = (GradientDrawable) decreaseBtn.getBackground();
         remove_drawable.setStroke(3, color);
         GradientDrawable count_drawable = (GradientDrawable)tvCount.getBackground();
         count_drawable.setStroke(3, color);
@@ -155,20 +184,21 @@ public class MaterialCounterView extends LinearLayout {
         tvCount.setTypeface(typeface);
     }
 
-    public void setMaxCount(int maxCount) {
+    public void setMaxLimit(int maxCount) {
         localMaxCount=maxCount;
         maxCountEnabled=true;
         if (count >= maxCount) {
             count = 0;
             count--;
-            tvCount.setText(Long.toString(count));
+            tvCount.setText(Integer.toString(count));
         }
     }
-    private void setMaxCount() {
+
+    private void setMaxLimit() {
         if (count >= localMaxCount) {
             count = 0;
             count--;
-            tvCount.setText(Long.toString(count));
+            tvCount.setText(Integer.toString(count));
         }
     }
     @Override

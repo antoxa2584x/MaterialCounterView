@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <declare-styleable name="MaterialCounterView">
-    <attr name="countTextColor" format="color"/>
-    <attr name="buttonsDrawableColor" format="color"/>
-    <attr name="addButtonDrawable" format="reference"/>
-    <attr name="removeButtonDrawable" format="reference"/>
-    <attr name="roundBtnBackgroundColor" format="color"/>
+    <attr name="counterTextColor" format="color" />
+    <attr name="increase_decreaseDrawableColor" format="color" />
+    <attr name="increaseButtonDrawable" format="reference" />
+    <attr name="decreaseButtonDrawable" format="reference" />
+    <attr name="borderBtnBackgroundColor" format="color" />
 </declare-styleable>
 </resources>
