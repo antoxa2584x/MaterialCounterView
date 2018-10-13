@@ -10,9 +10,9 @@
         android:id="@+id/myCounterView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:borderBtnBackgroundColor="@color/colorPrimary"
         app:counterTextColor="@color/colorAccent"
-        app:increase_decreaseDrawableColor="@color/colorPrimary"
-        app:increaseButtonDrawable="@drawable/ic_arrow_forward_black_24dp"
         app:decreaseButtonDrawable="@drawable/ic_arrow_back_black_24dp"
-        app:borderBtnBackgroundColor="@color/colorPrimary" />
+        app:increaseButtonDrawable="@drawable/ic_arrow_forward_black_24dp"
+        app:increase_decreaseDrawableColor="@color/colorPrimary" />
 </android.support.constraint.ConstraintLayout>
